@@ -21,7 +21,7 @@
       <FormItem name="account" class="enter-x">
         <Input
           size="large"
-          v-model:value="formData.account"
+          v-model="formData.account"
           :placeholder="t('sys.login.userName')"
           class="fix-auto-fill"
         />
@@ -54,6 +54,7 @@
         </ACol>
       </ARow>
 
+      <!-- 登录按钮 -->
       <FormItem class="enter-x">
         <Button type="primary" size="large" block @click="handleLogin" :loading="loading">
           {{ t('sys.login.loginButton') }}
@@ -135,7 +136,7 @@
   const rememberMe = ref(false);
 
   const formData = reactive({
-    account: 'ymsw',
+    account: 'qckj',
     password: '123456',
   });
 
@@ -145,6 +146,7 @@
 
   const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);
 
+  // 登录按钮方法
   async function handleLogin() {
     const data = await validForm();
     if (!data) return;

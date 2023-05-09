@@ -127,16 +127,20 @@ export const useUserStore = defineStore({
       } else {
         const permissionStore = usePermissionStore();
         if (!permissionStore.isDynamicAddedRoute) {
+          // 得到路由的列表，做循环处理，设置登录跳转
           const routes = await permissionStore.buildRoutesAction();
+          console.log('routes', routes);
           routes.forEach((route) => {
             router.addRoute(route as unknown as RouteRecordRaw);
           });
           router.addRoute(PAGE_NOT_FOUND_ROUTE as unknown as RouteRecordRaw);
           permissionStore.setDynamicAddedRoute(true);
         }
-        goHome && (await router.replace(userInfo?.homePath || PageEnum.BASE_HOME));
+        goHome && (await router.replace('/demo/qzj'));
+        // 下面是根据  PageEnum中的配置自动跳转到大屏页面去，上面设置为跳到集成测试demo目录中
+        // goHome && (await router.replace(userInfo?.homePath || PageEnum.BASE_HOME));
       }
-      return userInfo;
+      // return userInfo;
     },
     async getUserInfoAction(): Promise<UserInfo | null> {
       if (!this.getToken) return null;
