@@ -46,6 +46,14 @@ const dashboard: AppRouteModule = {
     //       title: 'cesium',
     //     },
     //   },
+    {
+      path: 'ceshi',
+      name: 'Ceshi',
+      component: () => import('/@/views/demo/qzj/tests.vue'),
+      meta: {
+        title: 'cs',
+      },
+    },
   ],
 };
 
