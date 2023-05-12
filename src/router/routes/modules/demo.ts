@@ -1,13 +1,13 @@
 import type { AppRouteModule } from '/@/router/types';
 
 import { LAYOUT } from '/@/router/constant';
-import { t } from '/@/hooks/web/useI18n';
+// import { t } from '/@/hooks/web/useI18n';
 
 const dashboard: AppRouteModule = {
   path: '/demo',
   name: 'Demo',
   component: LAYOUT,
-  redirect: '/demo/ymsw',
+  redirect: '/demo/qzj',
   meta: {
     icon: 'ion:grid-outline',
     title: '集成测试中',

@@ -1,14 +1,14 @@
 import type { AppRouteModule } from '/@/router/types';
 
-import { LAYOUT } from '/@/router/constant';
-import { t } from '/@/hooks/web/useI18n';
+// import { LAYOUT } from '/@/router/constant';
+// import { t } from '/@/hooks/web/useI18n';
 
 const dashboard: AppRouteModule = {
   path: '/platform',
   name: 'Platform', //name中的值与path相同，提示404，修改为首字母大写就正常
   //大屏页面的首页即为独立页面，不需要有tab页；
   // component: LAYOUT,
-  redirect: '/datav/ymsw',
+  redirect: '/demo/ceshi',
   meta: {
     icon: 'ion:grid-outline',
     title: '系统配置管理',

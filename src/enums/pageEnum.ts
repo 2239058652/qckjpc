@@ -4,7 +4,7 @@ export enum PageEnum {
   // basic home path
   // BASE_HOME = '/dashboard',
   //元谋水务设置默认跳转到大屏首页
-  BASE_HOME = '/datav',
+  BASE_HOME = '/demo',
 
   // error page path
   ERROR_PAGE = '/exception',

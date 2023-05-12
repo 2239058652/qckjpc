@@ -60,6 +60,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       proxy: createProxy(VITE_PROXY),
     },
     build: {
+      // 解决运行提示
+      // build.terserOptions is specified but build.minify is not set to use Terser. Note Vite now defaults to use esbuild for minification. If
+      // you still prefer Terser, set build.minify to "terser".
+      minify: 'terser',
       // target: 'es2015',
       target: 'esnext',
       outDir: OUTPUT_DIR,
