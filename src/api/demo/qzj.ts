@@ -8,6 +8,7 @@ import {
 } from './model/qzj';
 
 import { defHttp } from '/@/utils/http/axios';
+import { ErrorMessageMode } from '/#/axios';
 
 enum Api {
   Query = '/qzj/query',

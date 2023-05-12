@@ -100,7 +100,7 @@ export default defineComponent({
         <>
           <TypePicker
             menuTypeList={menuTypeList}
-            handler={(item: typeof menuTypeList[0]) => {
+            handler={(item: (typeof menuTypeList)[0]) => {
               baseHandler(HandlerEnum.CHANGE_LAYOUT, {
                 mode: item.mode,
                 type: item.type,
@@ -401,7 +401,7 @@ export default defineComponent({
         {...attrs}
         title={t('layout.setting.drawerTitle')}
         width={330}
-        wrapClassName="setting-drawer"
+        class="setting-drawer"
       >
         {unref(getShowDarkModeToggle) && <Divider>{() => t('layout.setting.darkMode')}</Divider>}
         {unref(getShowDarkModeToggle) && <AppDarkModeToggle class="mx-auto" />}
