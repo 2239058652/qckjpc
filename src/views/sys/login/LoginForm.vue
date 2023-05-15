@@ -21,11 +21,13 @@
       <FormItem name="account" class="enter-x">
         <Input
           size="large"
-          v-model="formData.account"
+          v-model:value="formData.account"
           :placeholder="t('sys.login.userName')"
           class="fix-auto-fill"
         />
       </FormItem>
+
+      <!-- 必须使用v-model:value，不然无法实现双向绑定 -->
       <FormItem name="password" class="enter-x">
         <InputPassword
           size="large"
@@ -121,7 +123,7 @@
   const ACol = Col;
   const ARow = Row;
   const FormItem = Form.Item;
-  const InputPassword = Input.Password;
+  const InputPassword = Input.Password; // ant-design-vue的密码输入框
   const { t } = useI18n();
   const { notification, createErrorModal } = useMessage();
   const { prefixCls } = useDesign('login');
