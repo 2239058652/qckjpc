@@ -82,21 +82,89 @@
     </a-row>
   </div>
 
-  <!-- 轮播图部分 -->
-  <div class="lunboLeft">
-    <Image width="30vw" height="40vh" src="../../../../assets/images/gjny.png" />
-    <p
-      style="
-        position: absolute;
-        bottom: -12px;
-        left: 2px;
-        z-index: 1;
-        color: #fff;
-        font-weight: 700;
-      "
-      >云南公司党委举办主题教育专题读书班</p
+  <a-row>
+    <a-col :span="12">
+      <!-- 轮播图部分 -->
+      <div class="lunboLeft">
+        <Image width="30vw" height="40vh" src="../../../../assets/images/gjny.png" />
+        <p
+          style="
+            position: absolute;
+            bottom: -12px;
+            left: 2px;
+            z-index: 1;
+            color: #fff;
+            font-weight: 700;
+          "
+          >云南公司党委举办主题教育专题读书班</p
+        >
+      </div>
+    </a-col>
+    <a-col
+      :span="6"
+      style="border-bottom: 1px solid black; padding-bottom: 5px; transform: translate(-50%, 0%)"
     >
-  </div>
+      <div class="lanMuTop">
+        <div style="width: 5px; height: 30px; background: red"></div>
+        <div
+          style="
+            font-weight: 800;
+            position: absolute;
+            z-index: 111;
+            top: 5px;
+            left: 10px;
+            text-align: center;
+          "
+          >要闻聚焦
+        </div>
+        <div
+          style="
+            font-size: 1px;
+            line-height: 10px;
+            margin-bottom: 20px;
+            position: absolute;
+            bottom: -10px;
+            right: 10px;
+            cursor: pointer;
+          "
+        >
+          更多>>
+        </div>
+      </div>
+    </a-col>
+    <a-col
+      :span="6"
+      style="border-bottom: 1px solid black; padding-bottom: 5px; transform: translate(-25%, 0%)"
+    >
+      <div class="lanMuTop">
+        <div style="width: 5px; height: 30px; background: red"></div>
+        <div
+          style="
+            font-weight: 800;
+            position: absolute;
+            z-index: 111;
+            top: 5px;
+            left: 10px;
+            text-align: center;
+          "
+          >通知公告
+        </div>
+        <div
+          style="
+            font-size: 1px;
+            line-height: 10px;
+            margin-bottom: 20px;
+            position: absolute;
+            bottom: -10px;
+            right: 10px;
+            cursor: pointer;
+          "
+        >
+          更多>>
+        </div>
+      </div>
+    </a-col>
+  </a-row>
 
   <!-- 转到后台按钮 -->
   <div style="position: absolute; bottom: 10px; right: 10px">
@@ -181,5 +249,8 @@
     margin-left: 5%;
     position: absolute;
     z-index: -1;
+  }
+  .lanMuTop {
+    background: #fff;
   }
 </style>
