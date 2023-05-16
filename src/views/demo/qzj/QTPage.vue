@@ -1,96 +1,160 @@
 <template>
-  <div class="top">
-    <div class="top-left">
-      <div>
-        <a-avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-      </div>
-      <div class="lefts">
-        <div>
-          <div style="letter-spacing: 3px">国家能源集团</div>
-          <div>CHN ENERGY</div>
+  <div style="width: 100%; height: 15vh">
+    <a-row>
+      <a-col :span="12" style="margin-top: 2vh">
+        <a-row>
+          <a-col :span="1" :offset="3">
+            <div>
+              <a-avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+            </div>
+          </a-col>
+          <a-col :span="12" style="font-size: 1px; font-weight: 600">
+            <div>
+              <div style="letter-spacing: 3px">国家能源集团</div>
+              <div>CHN ENERGY</div>
+            </div>
+            <div style="margin-top: 5px">
+              <div style="letter-spacing: 3px">云南电力有限公司</div>
+              <div>YUNNAN POWER CO LTD</div>
+            </div>
+          </a-col>
+        </a-row>
+      </a-col>
+      <a-col :span="10" :offset="2">
+        <a-row>
+          <div style="font-size: 1px; display: flex; justify-content: space-around; margin-top: 2%">
+            <div :style="topMouseList" @mousemove="setSYMove" @mouseleave="setSYMoveLeave"
+              >设为首页</div
+            >
+            <a-divider type="vertical" style="border-color: black; margin-top: 3px" />
+            <div style="cursor: pointer; color: red">集团公司首页</div>
+            <a-divider type="vertical" style="border-color: black; margin-top: 3px" />
+            <div style="cursor: pointer">加入收藏</div>
+            <a-divider type="vertical" style="border-color: black; margin-top: 3px" />
+            <div style="cursor: pointer; color: red">联系我们</div>
+            <a-divider type="vertical" style="border-color: black; margin-top: 3px" />
+            <div style="cursor: pointer">信息公开</div>
+            <a-divider type="vertical" style="border-color: black; margin-top: 3px" />
+            <div>当前访客身份： {{ '游客' }} <span style="cursor: pointer">[登录]</span></div>
+          </div>
+        </a-row>
+
+        <!-- 搜索框和搜索按钮 -->
+        <div style="margin-top: 5%; margin-right: 15%">
+          <a-input-search
+            v-model:value="value"
+            placeholder=""
+            enter-button="搜索"
+            size="default"
+            @search="onSearch"
+          />
         </div>
-        <div style="margin-top: 5px">
-          <div style="letter-spacing: 3px">云南电力有限公司</div>
-          <div>YUNNAN POWER CO LTD</div>
+      </a-col>
+    </a-row>
+  </div>
+  <div style="width: 100; height: 5vh">
+    <a-row>
+      <a-col :span="24">
+        <div class="top-tabs">
+          <div
+            class="font-class"
+            v-for="(i, index) in tabsList"
+            :key="index"
+            @click="tabsClick(i)"
+            >{{ i }}</div
+          >
         </div>
-      </div>
-    </div>
-    <div class="top-right">
-      <div>
-        <h3>设为首页</h3>
-      </div>
-      <div>
-        <a-form layout="inline" :model="formState">
-          <a-form-item>
-            <a-input v-model:value="formState.user" placeholder="Username">
-              <template #prefix><UserOutlined style="color: rgba(0, 0, 0, 0.25)" /></template>
-            </a-input>
-          </a-form-item>
-          <a-form-item>
-            <a-button type="primary" danger> 搜索 </a-button>
-          </a-form-item>
-        </a-form>
-      </div>
-    </div>
+      </a-col>
+    </a-row>
   </div>
-  <div class="top-tabs">
-    <div class="font-class" v-for="(i, index) in tabsList" :key="index">{{ i }}</div>
+
+  <!-- 导航栏下面文字部分 -->
+  <div style="height: 10vh; width: 90%; margin: 3% 5% 0 5%">
+    <a-row>
+      <a-col :span="4" :offset="2">
+        <img :width="50" :height="50" src="../../../../assets/images/gjny.png" />
+      </a-col>
+      <a-col :span="18">
+        <p style="text-align: center; line-height: 10vh; font-weight: 700; letter-spacing: 2px">{{
+          msg
+        }}</p>
+      </a-col>
+    </a-row>
   </div>
-  <!-- <div>
-    <a-button @click="linToHT">后台</a-button>
-  </div> -->
+
+  <!-- 轮播图部分 -->
+  <div class="lunboLeft">
+    <Image width="30vw" height="40vh" src="../../../../assets/images/gjny.png" />
+    <p
+      style="
+        position: absolute;
+        bottom: -12px;
+        left: 2px;
+        z-index: 1;
+        color: #fff;
+        font-weight: 700;
+      "
+      >云南公司党委举办主题教育专题读书班</p
+    >
+  </div>
+
+  <!-- 转到后台按钮 -->
+  <div style="position: absolute; bottom: 10px; right: 10px">
+    <a-button @click="linToHT" type="primary" size="small">后台</a-button>
+  </div>
 </template>
 
 <script setup lang="ts">
-  import { UserOutlined } from '@ant-design/icons-vue';
   import { onMounted, ref, reactive, UnwrapRef } from 'vue';
-  interface FormState {
-    user: string;
-    password: string;
+  import { Image } from 'ant-design-vue';
+
+  interface ITopMouse {
+    cursor: string;
+    color?: string;
   }
   const tabsList = ref(['首页', '公司概况', '新闻', '专题', '一周咨询', '员工艺苑', '业务系统']); // 首页菜单列表
-  const formState: UnwrapRef<FormState> = reactive({
-    user: '',
-    password: '',
+  const topMouseList: UnwrapRef<ITopMouse> = reactive({
+    cursor: 'pointer',
   });
+  const value = ref<string>('');
+
+  const msg = ref(' ');
+  // 点击搜索按钮触发
+  const onSearch = (searchValue: string) => {
+    console.log('use valueor use this.value value.value', searchValue);
+  };
   const linToHT = () => {
     // 跳转到后台管理页面
     window.open('#/htgl/xtsz');
   };
+
+  // 点击导航栏函数,给msg赋值
+  function tabsClick(val: string): void {
+    msg.value = val;
+    msg.value = '云南公司党委举报主题教育专题读书班';
+  }
+  // 鼠标移动更改字体颜色
+  function setSYMove() {
+    topMouseList.color = 'red';
+  }
+  function setSYMoveLeave() {
+    topMouseList.color = '';
+  }
   onMounted(() => {
-    console.log('onMounted加载了');
+    // console.log('onMounted加载了');
   });
 </script>
 
-<style scoped lang="scss">
-  .top {
-    display: flex;
-    justify-content: space-around;
-  }
-  .top-left {
-    width: 50%;
-    height: 5vh;
-    margin-left: 0%;
-    display: flex;
-    .lefts {
-      display: flex;
-      flex-direction: column;
-      font-weight: 700;
-      font-size: 1px;
-      text-indent: 5px;
-    }
-  }
-  .top-right {
-  }
+<style scoped lang="less">
   .top-tabs {
     display: flex;
     justify-content: space-around;
-    padding: 10px;
-    margin: 5%;
+    padding: 1%;
+    margin: 0 5%;
     width: 90%;
-    height: 7vh;
     background-color: #dd0000;
     .font-class {
+      font-size: 16px;
       color: #fff;
       font-weight: 600;
       cursor: pointer;
@@ -98,5 +162,24 @@
     .font-class:hover {
       color: black;
     }
+  }
+  .ant-carousel :deep(.slick-slide) {
+    text-align: center;
+    height: 35vh;
+    line-height: 35vh;
+    background: #364d79;
+    overflow: hidden;
+  }
+
+  .ant-carousel :deep(.slick-slide h3) {
+    color: #fff;
+  }
+  .lunboLeft {
+    width: 30vw;
+    height: 40vh;
+    background: rgb(163, 206, 83);
+    margin-left: 5%;
+    position: absolute;
+    z-index: -1;
   }
 </style>
