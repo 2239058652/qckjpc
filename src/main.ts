@@ -18,7 +18,9 @@ import { registerGlobComp } from '/@/components/registerGlobComp';
 import Antd from 'ant-design-vue';
 //导入datav
 // import * as dataV from '@jiaminghi/data-view';//使用该行界面中会无效果，提示无法加载对应的组件
-import dataV from '@jiaminghi/data-view';
+
+// 注释掉datav的声明，省去每次下载依赖都要修改node_modules/@jiaminghi/data-view/lib/components/decoration6/src/main.vue:8:11
+// import dataV from '@jiaminghi/data-view';
 //导入vue3-video-player
 import VueVideoPlayer from '@videojs-player/vue';
 import 'video.js/dist/video-js.css';
@@ -26,6 +28,7 @@ import 'video.js/dist/video-js.css';
 // Importing on demand in local development will increase the number of browser requests by around 20%.
 // This may slow down the browser refresh speed.
 // Therefore, only enable on-demand importing in production environments .
+
 if (import.meta.env.DEV) {
   import('ant-design-vue/dist/antd.less');
 }
@@ -33,7 +36,6 @@ if (import.meta.env.DEV) {
 if (import.meta.env.PROD) {
   import('ant-design-vue/dist/antd.less');
 }
-
 async function bootstrap() {
   const app = createApp(App);
 
@@ -41,8 +43,7 @@ async function bootstrap() {
   app.use(Antd);
 
   //全局注册datav
-  app.use(dataV);
-
+  // app.use(dataV);
   app.use(VueVideoPlayer);
 
   // Configure store
