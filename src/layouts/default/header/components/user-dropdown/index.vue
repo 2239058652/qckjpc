@@ -60,9 +60,6 @@
   import { openWindow } from '/@/utils';
 
   import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent';
-  import { url } from 'inspector';
-
-  type MenuEvent = 'logout' | 'doc' | 'lock' | 'routerLink';
 
   export default defineComponent({
     name: 'UserDropdown',
@@ -103,7 +100,7 @@
         openWindow(DOC_URL);
       }
 
-      function handleMenuClick(e: { key: MenuEvent }) {
+      const handleMenuClick = (e) => {
         switch (e.key) {
           case 'logout':
             handleLoginOut();
@@ -118,7 +115,7 @@
             window.open('#/sl/QTPage');
             break;
         }
-      }
+      };
 
       return {
         prefixCls,

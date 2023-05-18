@@ -44,12 +44,57 @@
         </vue3-seamless-scroll>
       </div>
     </div>
+    <div
+      style="
+        border-bottom: 1px solid #aaaaaa;
+        height: 6vh;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 50vw;
+      "
+    >
+      <div style="width: 5px; height: 30px; background: red"></div>
+      <div style="font-weight: 800; margin-left: 3px">热点专题</div>
+    </div>
+    <div style="height: 10vh; background: #dd0000; margin-top: 10%">
+      <a-space
+        direction="horizontal"
+        align="center"
+        style="display: flex; justify-content: start; margin-left: 5vw"
+      >
+        <a-select
+          v-model:value="value1"
+          :size="size"
+          style="width: 200px; margin-top: 3vh"
+          :options="options"
+        />
+        <a-select
+          v-model:value="value1"
+          :size="size"
+          style="width: 200px; margin-top: 3vh"
+          :options="options"
+        />
+        <a-select
+          v-model:value="value1"
+          :size="size"
+          style="width: 200px; margin-top: 3vh"
+          :options="options"
+        />
+        <div
+          style="margin-top: 3vh; color: #fff; cursor: pointer"
+          @click="handleParentsClick('handleParen')"
+          >管理后台登录</div
+        >
+      </a-space>
+    </div>
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
   import { message } from 'ant-design-vue';
-  import { reactive } from 'vue';
+  import type { SelectProps } from 'ant-design-vue';
+  import { reactive, ref, defineEmits } from 'vue';
   import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
 
   const partnerList = reactive([
@@ -74,11 +119,29 @@
       url: '5',
     },
   ]);
-
   const viewWebPartner = (url) => {
     console.log(url, '=====================');
     message.info(url);
   };
+  const size = ref<SelectProps['size']>('middle');
+  const value1 = ref('相关单位链接');
+  const options = [
+    {
+      value: '相关单位链接',
+    },
+    {
+      value: '成员单位链接',
+    },
+    {
+      value: '云电资源链接',
+    },
+  ];
+
+  // script setup的setup方法无法接受参数，需要声明defineProps来接受参数,defineEmits接受方法
+  let handleParentsClick = defineEmits(['handleParen']);
+
+  // 在 Vue3 中，使用 ref 获取子组件时，如果想要获取子组件的数据或者方法，子组件可以通过// defineExpose 方法暴露数据。
+  // defineExpose({});
 </script>
 
 <style lang="scss" scoped>

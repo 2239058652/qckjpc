@@ -180,7 +180,7 @@
     </div>
 
     <MiddleModel />
-    <KeJiModel />
+    <KeJiModel ref="childRef" @handleParen="linToHT" />
 
     <!-- 转到后台按钮 -->
     <div style="position: absolute; bottom: 10px; right: 10px">
@@ -190,7 +190,7 @@
 </template>
 
 <script setup lang="ts">
-  import { onMounted, ref, reactive, UnwrapRef } from 'vue';
+  import { onMounted, ref, reactive, UnwrapRef, provide } from 'vue';
   import { Image } from 'ant-design-vue';
   import MiddleModel from './components/MiddleModel.vue'; //  中间栏目组件
   import KeJiModel from './components/KeJiModel.vue'; //  底部
@@ -205,6 +205,14 @@
   });
   const value = ref<string>('');
 
+  // vue3的子组件获取ref dom元素的方法 变量名称必须要与 ref 命名的属性名称一致
+  // ref<any>可以为模板，不然ts会报错
+  // const childRef = ref<any>(null);
+  const childRef = ref();
+
+  const touchEvent = () => {
+    childRef.value.firstEvent();
+  };
   const msg = ref(' ');
   // 点击搜索按钮触发
   const onSearch = (searchValue: string) => {
@@ -214,7 +222,7 @@
     // 跳转到后台管理页面
     window.open('#/htgl/xtsz');
   };
-
+  provide('routerLink', linToHT);
   // 点击导航栏函数,给msg赋值
   function tabsClick(val: string): void {
     msg.value = val;
@@ -227,6 +235,7 @@
   function setSYMoveLeave() {
     topMouseList.color = '';
   }
+  defineExpose({});
   onMounted(() => {
     // console.log('onMounted加载了', window.screen.height);
   });
