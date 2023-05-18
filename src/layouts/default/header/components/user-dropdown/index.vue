@@ -9,8 +9,10 @@
       </span>
     </span>
 
+    <!-- 后台的顶部头像点击展开菜单部分 -->
     <template #overlay>
       <Menu @click="handleMenuClick">
+        <!-- 文档 -->
         <MenuItem
           key="doc"
           :text="t('layout.header.dropdownItemDoc')"
@@ -23,6 +25,11 @@
           key="lock"
           :text="t('layout.header.tooltipLock')"
           icon="ion:lock-closed-outline"
+        />
+        <MenuItem
+          key="routerLink"
+          :text="t('layout.header.routerLinkToWebHtml')"
+          icon="ant-design:link-outlined"
         />
         <MenuItem
           key="logout"
@@ -53,8 +60,9 @@
   import { openWindow } from '/@/utils';
 
   import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent';
+  import { url } from 'inspector';
 
-  type MenuEvent = 'logout' | 'doc' | 'lock';
+  type MenuEvent = 'logout' | 'doc' | 'lock' | 'routerLink';
 
   export default defineComponent({
     name: 'UserDropdown',
@@ -105,6 +113,9 @@
             break;
           case 'lock':
             handleLock();
+            break;
+          case 'routerLink':
+            window.open('#/sl/QTPage');
             break;
         }
       }

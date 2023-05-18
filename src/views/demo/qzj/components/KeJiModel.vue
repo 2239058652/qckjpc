@@ -1,6 +1,6 @@
 <template>
   <div class="contain">
-    <!-- <div
+    <div
       style="
         border-bottom: 1px solid #aaaaaa;
         height: 6vh;
@@ -11,9 +11,9 @@
     >
       <div style="width: 5px; height: 30px; background: red"></div>
       <div style="font-weight: 800; margin-left: 3px">图片新闻 </div>
-    </div> -->
+    </div>
     <!-- 下面是图片滚动 -->
-    <div>
+    <div style="margin-top: 10px">
       <div class="index-roll">
         <!--step: 0.5, // 数值越大速度滚动越快
             limitMoveNum: 1, // 开始无缝滚动的数据量 this.dataList.length
@@ -34,10 +34,11 @@
           <ul :style="{ width: '100vw' }">
             <li
               v-for="(item, index) in partnerList"
-              :key="item.url"
+              :key="index"
               @click="viewWebPartner(item.imgUrl)"
             >
               <img :src="item.imgUrl" />
+              <span>香格里拉公司完成业绩...</span>
             </li>
           </ul>
         </vue3-seamless-scroll>
@@ -47,6 +48,7 @@
 </template>
 
 <script lang="ts" setup>
+  import { message } from 'ant-design-vue';
   import { reactive } from 'vue';
   import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
 
@@ -63,20 +65,29 @@
       imgUrl: '../../../../../assets/images/lanmu01.png',
       url: '3',
     },
+    {
+      imgUrl: '../../../../../assets/images/lanmu01.png',
+      url: '4',
+    },
+    {
+      imgUrl: '../../../../../assets/images/lanmu01.png',
+      url: '5',
+    },
   ]);
 
   const viewWebPartner = (url) => {
     console.log(url, '=====================');
+    message.info(url);
   };
 </script>
 
 <style lang="scss" scoped>
   .contain {
-    padding: 7%;
+    padding: 0 7%;
   }
   .index-roll {
     overflow: hidden;
-    height: 130px;
+    height: 230px;
     width: 1140px;
     margin: 0 auto 60px auto;
     ul {
@@ -84,7 +95,7 @@
       li {
         width: 360px;
         margin: 0 10px;
-        padding: 30px 0;
+        // padding: 30px 0;
         background-color: #f8f8f8;
         border-radius: 4px;
       }
@@ -94,7 +105,7 @@
       }
       img {
         width: auto;
-        height: 60px;
+        height: 160px;
         display: block;
         margin: 0 auto;
       }

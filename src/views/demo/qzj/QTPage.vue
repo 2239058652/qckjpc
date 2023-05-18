@@ -1,6 +1,5 @@
 <template>
   <div class="contain">
-    <KeJiModel />
     <div style="width: 100%; height: 15vh">
       <a-row>
         <a-col :span="12" style="margin-top: 2vh">
@@ -181,6 +180,7 @@
     </div>
 
     <MiddleModel />
+    <KeJiModel />
 
     <!-- 转到后台按钮 -->
     <div style="position: absolute; bottom: 10px; right: 10px">

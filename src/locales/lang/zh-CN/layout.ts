@@ -4,6 +4,7 @@ export default {
     // user dropdown
     dropdownItemDoc: '文档',
     dropdownItemLoginOut: '退出系统',
+    routerLinkToWebHtml: '前台网站',
 
     // tooltip
     tooltipErrorLog: '错误日志',
