@@ -210,9 +210,6 @@
   // const childRef = ref<any>(null);
   const childRef = ref();
 
-  const touchEvent = () => {
-    childRef.value.firstEvent();
-  };
   const msg = ref(' ');
   // 点击搜索按钮触发
   const onSearch = (searchValue: string) => {
